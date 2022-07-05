@@ -23,14 +23,14 @@ const ShippingScreen = () => {
     setValue('fullName', shippingAddress.fullName);
     setValue('address', shippingAddress.address);
     setValue('city', shippingAddress.city);
-    setValue('postalCode', shippingAddress.postalCode);
+    setValue('phone', shippingAddress.phone);
     setValue('country', shippingAddress.country);
   }, [setValue, shippingAddress]);
 
-  const submitHandler = ({ fullName, address, city, postalCode, country }) => {
+  const submitHandler = ({ fullName, address, city, phone, country }) => {
     dispatch({
       type: 'SAVE_SHIPPING_ADDRESS',
-      payload: { fullName, address, city, postalCode, country },
+      payload: { fullName, address, city, phone, country },
     });
     Cookies.set(
       'cart',
@@ -40,7 +40,7 @@ const ShippingScreen = () => {
           fullName,
           address,
           city,
-          postalCode,
+          phone,
           country,
         },
       })
@@ -98,16 +98,16 @@ const ShippingScreen = () => {
         )}
       </div>
       <div className="mb-4">
-        <label htmlFor="postalCode">Postal Code</label>
+        <label htmlFor="phone">Phone number</label>
         <input
           className="w-full"
-          id="postalCode"
-          {...register('postalCode', {
-            required: 'Please enter postal code',
+          id="phone"
+          {...register('phone', {
+            required: 'Please enter valid phone number',
           })}
         />
-        {errors.postalCode && (
-          <div className="text-red-500 ">{errors.postalCode.message}</div>
+        {errors.phone && (
+          <div className="text-red-500 ">{errors.phone.message}</div>
         )}
       </div>
       <div className="mb-4">
@@ -130,5 +130,5 @@ const ShippingScreen = () => {
   </Layout>
   )
 }
-
+ShippingScreen.auth = true;
 export default ShippingScreen
