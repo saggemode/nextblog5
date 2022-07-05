@@ -1,8 +1,27 @@
-import Head from "next/head";
-import Link from "next/link";
-import React from "react";
+import { signOut, useSession } from 'next-auth/react';
+import Head from 'next/head';
+import Link from 'next/link';
+import Cookies from 'js-cookie';
+import React, { useContext, useEffect, useState } from 'react';
+import { ToastContainer } from 'react-toastify';
+import { Menu } from '@headlessui/react';
+import 'react-toastify/dist/ReactToastify.css';
+import { Store } from '../utils/Store';
 
 const Layout = ({ title, description, children }) => {
+  //const { status, data: session } = useSession();
+  const { state, dispatch } = useContext(Store);
+  const { cart } = state;
+  const [cartItemsCount, setCartItemsCount] = useState(0);
+  useEffect(() => {
+    setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
+  }, [cart.cartItems]);
+
+  // const logoutClickHandler = () => {
+  //   Cookies.remove('cart');
+  //   dispatch({ type: 'CART_RESET' });
+  //   signOut({ callbackUrl: '/login' });
+  // };
   return (
     <>
       <Head>
@@ -20,9 +39,11 @@ const Layout = ({ title, description, children }) => {
               <Link href="/cart">
                 <a className="p-2">
                   Cart
-                  <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
-                    2
-                  </span>
+                  {cartItemsCount > 0 && (
+                    <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
+                      {cartItemsCount}
+                    </span>
+                  )}
                 </a>
               </Link>
               <Link href="/login">
