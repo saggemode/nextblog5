@@ -8,11 +8,9 @@ import { Store } from '../utils/Store';
 
 const PaymentScreen = () => {
     const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
-
     const { state, dispatch } = useContext(Store);
     const { cart } = state;
     const { shippingAddress, paymentMethod } = cart;
-  
     const router = useRouter();
   
     const submitHandler = (e) => {
