@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import Layout from "../../components/Layout";
 import db from "../../utils/db";
 import { Store } from "../../utils/Store";
-import Product from "../models/Product";
+import Product from "../../models/Product";
 
 const ProductScreen = (props) => {
   const { product } = props;

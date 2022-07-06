@@ -7,7 +7,8 @@ import ProductItem from "../components/ProductItem";
 
 import db from "../utils/db";
 import { Store } from "../utils/Store";
-import Product from "./models/Product";
+import Product from "../models/Product";
+
 
 export default function Home({ products }) {
   const { state, dispatch } = useContext(Store);

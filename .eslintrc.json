@@ -3,6 +3,3 @@
   "extends": ["eslint:recommended", "next", "next/core-web-vitals"]
 }
 
-// {
-//   "extends": ["eslint:recommended", "next/babel", "next/core-web-vitals"]
-// }
