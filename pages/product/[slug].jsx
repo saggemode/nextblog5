@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 import React, { useContext } from "react";
 import { toast } from "react-toastify";
 import Layout from "../../components/Layout";
-import data from "../../utils/data";
 import db from "../../utils/db";
 import { Store } from "../../utils/Store";
 import Product from "../models/Product";
