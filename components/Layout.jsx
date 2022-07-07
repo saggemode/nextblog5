@@ -1,28 +1,12 @@
-import { signOut, useSession } from "next-auth/react";
-import Head from "next/head";
-import Link from "next/link";
-import Cookies from "js-cookie";
-import React, { useContext, useEffect, useState } from "react";
+ import Head from "next/head";
+import React from "react";
 import { ToastContainer } from "react-toastify";
-import { Menu } from "@headlessui/react";
 import "react-toastify/dist/ReactToastify.css";
-import { Store } from "../utils/Store";
-import DropdownLink from "./DropdownLink";
+
+import Header from "./Header";
+import Footer from "./Footer";
 
 const Layout = ({ title, description, children }) => {
-  const { status, data: session } = useSession();
-  const { state, dispatch } = useContext(Store);
-  const { cart } = state;
-  const [cartItemsCount, setCartItemsCount] = useState(0);
-  useEffect(() => {
-    setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
-  }, [cart.cartItems]);
-
-  const logoutClickHandler = () => {
-    Cookies.remove("cart");
-    dispatch({ type: "CART_RESET" });
-    signOut({ callbackUrl: "/login" });
-  };
   return (
     <>
       <Head>
@@ -33,7 +17,7 @@ const Layout = ({ title, description, children }) => {
 
       <ToastContainer position="bottom-center" limit={1} />
       <div className="flex min-h-screen flex-col justify-between">
-        <header>
+        {/* <header>
           <nav className="flex h-12 items-center px-4 justify-between shadow-md">
             <Link href="/">
               <a className="text-lg font-bold">Tochi Store</a>
@@ -50,11 +34,11 @@ const Layout = ({ title, description, children }) => {
                 </a>
               </Link>
               {status === "loading" ? (
-                "Loading"
+                "A"
               ) : session?.user ? (
                 <Menu as="div" className="relative inline-block">
                   <Menu.Button className="text-blue-600">
-                    {session.user.name}
+                    {session.user.name.split(' ')[0]}
                   </Menu.Button>
                   <Menu.Items className="absolute right-0 w-56 origin-top-right bg-white  shadow-lg ">
                     <Menu.Item>
@@ -98,13 +82,13 @@ const Layout = ({ title, description, children }) => {
               )}
             </div>
           </nav>
-        </header>
 
+          
+        </header> */}
+
+        <Header />
         <main className="container m-auto mt-4 px-4">{children}</main>
-
-        <footer className="flex h-10 justify-center items-center shadow-inner">
-          <p>Copyright © 2022 Amazona</p>
-        </footer>
+        <Footer />
       </div>
     </>
   );
