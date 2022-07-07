@@ -135,7 +135,7 @@ const Header = () => {
                 <p>Sign Out</p>
               </div>
             )
-          : null}
+          : ""}
       </div>
     </header>
   );
