@@ -1,18 +1,18 @@
 import { signOut, useSession } from "next-auth/react";
-import Link from "next/link";
-import { MenuIcon } from "@heroicons/react/outline";
 import Cookies from "js-cookie";
 import React, { useContext, useEffect, useState } from "react";
-import { Menu } from "@headlessui/react";
 import "react-toastify/dist/ReactToastify.css";
 import { Store } from "../utils/Store";
+import { Menu } from "@headlessui/react";
+import { Search, ShoppingCart } from "@mui/icons-material";
+import Image from "next/image";
+import { useRouter } from "next/router";
 import DropdownLink from "./DropdownLink";
-import Sidebar from "./Sidebar";
+import Link from "next/link";
 
 const Header = () => {
   const { status, data: session } = useSession();
-  const [showSignOut] = useState(false);
-
+  const router = useRouter();
   const [showSideBar, setShowSideBar] = useState(false);
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
@@ -28,32 +28,46 @@ const Header = () => {
   };
   return (
     <header>
-      {showSideBar && (
-        <div className="hidden sm:flex fixed z-50 w-full top-0 bg-black bg-opacity-70 h-screen">
-          <Sidebar setShowSideBar={setShowSideBar} />
+      <div className="flex items-center bg-gray-300 p-1 flex-row py-2">
+        <div className="mt-2 flex items-center flex-grow sm:flex-grow-0">
+          <Image
+            onClick={() => router.push("/")}
+            src="https://images.pexels.com/photos/2901209/pexels-photo-2901209.jpeg?auto=compress&cs=tinysrgb&w=600"
+            width={150}
+            height={40}
+            alt="no inage"
+            objectFit="contain"
+            className="cursor-pointer"
+          />
         </div>
-      )}
-      <nav className="flex h-12 items-center px-4 justify-between shadow-md">
-        <Link href="/">
-          <a className="text-lg font-bold">Tochi Store</a>
-        </Link>
-        <div>
-          <Link href="/cart">
-            <a className="p-2">
-              Cart
-              {cartItemsCount > 0 && (
-                <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
-                  {cartItemsCount}
-                </span>
-              )}
-            </a>
-          </Link>
+        {/* Search */}
+        <div className="hidden sm:flex items-center h-10 rounded-md flex-grow cursor-pointer bg-red-400 hover:bg-red-500">
+          <input
+            className="p-2 h-full w-6 flex-grow flex-shrink rounded-l-md focus:outline-none px-4"
+            type="text"
+          />
+          <Search className="h-12 p-4" />
+        </div>
+        {/* Right */}
+        <div className=" text-gray-600 flex items-center text-xs space-x-6 mx-6 whitespace-nowrap">
           {status === "loading" ? (
             "A"
           ) : session?.user ? (
             <Menu as="div" className="relative inline-block">
               <Menu.Button className="text-blue-600">
-                {session.user.name.split(" ")[0]}
+                <div className="link">
+                  <p>
+                    Hello,{" "}
+                    {session ? (
+                      <span className="text-gray-100 font-bold">
+                        {session.user.name.split(" ")[0]}
+                      </span>
+                    ) : (
+                      "Sign In"
+                    )}
+                  </p>
+                  <p className="font-extrabold md:text-sm">Account & Lists</p>
+                </div>
               </Menu.Button>
               <Menu.Items className="absolute right-0 w-56 origin-top-right bg-white  shadow-lg ">
                 <Menu.Item>
@@ -92,50 +106,33 @@ const Header = () => {
               <a className="p-2">Login</a>
             </Link>
           )}
-        </div>
-      </nav>
 
-      <div className=" bg-white flex text-amazon_blue space-x-3 p-2 pl-6 whitespace-nowrap items-center text-xs">
-        <p
-          onClick={() => setShowSideBar(true)}
-          className="link flex items-center "
-        >
-          <MenuIcon className="h-6 mr-1" />
-          All
-        </p>
-        <p className="hover_animation shadow-xl p-2 rounded-xl">Prime Video</p>
-        <p className="hover_animation shadow-xl p-2 rounded-xl">
-          Tochi Business
-        </p>
-        <p className="hover_animation shadow-xl p-2 rounded-xl">Today Deals</p>
-        <p className="hidden hover_animation shadow-xl p-2 rounded-xl lg:inline-flex">
-          Electronis
-        </p>
-        <p className="hidden hover_animation shadow-xl p-2 rounded-xl lg:inline-flex">
-          Food & Grocery
-        </p>
-        <p className="hidden hover_animation shadow-xl p-2 rounded-xl lg:inline-flex">
-          Prime
-        </p>
-        <p className="hidden hover_animation shadow-xl p-2 rounded-xl lg:inline-flex">
-          Buy Again
-        </p>
-        <p className="hidden hover_animation shadow-xl p-2 rounded-xl lg:inline-flex">
-          Shopper Toolkit
-        </p>
-        <p className="hidden hover_animation shadow-xl p-2 rounded-xl lg:inline-flex">
-          Health & Personal Care
-        </p>
-        {session
-          ? showSignOut && (
-              <div
-                onClick={signOut}
-                className="absolute hover:cursor-pointer right-10 bg-white rounded-sm shadow-lg p-2 text-amazon_blue font-bold"
-              >
-                <p>Sign Out</p>
-              </div>
-            )
-          : ""}
+          {/* <div className="link">
+            <p>
+              Hello,
+              <span className="text-gray-100 font-bold text-sm">
+              {session.user.name.split(" ")[0]}
+              </span>
+            </p>
+            <p className="font-extrabold md:text-sm">Account & Lists</p>
+          </div> */}
+
+          <div
+            onClick={() => router.push("/cart")}
+            className="relative link flex items-center"
+          >
+            {cartItemsCount > 0 && (
+              <span className="absolute top-0 right-0 md:right-10 h-4 w-4 bg-red-400 text-center rounded-full font-bold text-black">
+                {cartItemsCount}
+              </span>
+            )}
+
+            <ShoppingCart className="h-10" />
+            <p className="hidden font-extrabold md:text-sm md:inline mt-2">
+              Basket
+            </p>
+          </div>
+        </div>
       </div>
     </header>
   );
