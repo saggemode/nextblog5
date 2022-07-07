@@ -13,7 +13,6 @@ import Link from "next/link";
 const Header = () => {
   const { status, data: session } = useSession();
   const router = useRouter();
-  const [showSideBar, setShowSideBar] = useState(false);
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
   const [cartItemsCount, setCartItemsCount] = useState(0);
