@@ -27,12 +27,7 @@ const Header = () => {
   };
   return (
     <header>
-      {/* <nav className="flex h-12 items-center px-4 justify-between shadow-md">
       
-      </nav>
-      <Link href="/">
-        <a className="text-lg font-bold">Tochi Store</a>
-      </Link> */}
       <div className="flex items-center bg-gray-300 p-1 flex-row py-2">
         <div className="mt-2 flex items-center flex-grow sm:flex-grow-0">
           <Image
