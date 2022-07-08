@@ -7,7 +7,7 @@ import { Menu } from "@headlessui/react";
 import DropdownLink from "./DropdownLink";
 import Image from "next/image";
 import { useRouter } from "next/router";
-//import { Search } from "@mui/icons-material";
+import {  ShoppingCart } from "@mui/icons-material";
 import Link from "next/link";
 
 const Header = () => {
@@ -50,23 +50,26 @@ const Header = () => {
           <Search className="h-12 p-4" />
         </div> */}
 
-        <div>
-          <Link href="/cart">
-            <a className="p-2">
-              Cart
-              {cartItemsCount > 0 && (
-                <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
-                  {cartItemsCount}
-                </span>
-              )}
-            </a>
-          </Link>
+          {/* Right */}
+          <div className=" text-gray-600 flex items-center text-xs space-x-6 mx-6 whitespace-nowrap">
           {status === "loading" ? (
             "A"
           ) : session?.user ? (
             <Menu as="div" className="relative inline-block">
               <Menu.Button className="text-blue-600">
-                {session.user.name.split(" ")[0]}
+                <div className="link">
+                  <p>
+                    Hello,{" "}
+                    {session ? (
+                      <span className="text-gray-100 font-bold">
+                        {session.user.name.split(" ")[0]}
+                      </span>
+                    ) : (
+                      "Sign In"
+                    )}
+                  </p>
+                  <p className="font-extrabold md:text-sm">Account & Lists</p>
+                </div>
               </Menu.Button>
               <Menu.Items className="absolute right-0 w-56 origin-top-right bg-white  shadow-lg ">
                 <Menu.Item>
@@ -105,6 +108,32 @@ const Header = () => {
               <a className="p-2">Login</a>
             </Link>
           )}
+
+          {/* <div className="link">
+            <p>
+              Hello,
+              <span className="text-gray-100 font-bold text-sm">
+              {session.user.name.split(" ")[0]}
+              </span>
+            </p>
+            <p className="font-extrabold md:text-sm">Account & Lists</p>
+          </div> */}
+
+          <div
+            onClick={() => router.push("/cart")}
+            className="relative link flex items-center"
+          >
+            {cartItemsCount > 0 && (
+              <span className="absolute top-0 right-0 md:right-10 h-4 w-4 bg-red-400 text-center rounded-full font-bold text-black">
+                {cartItemsCount}
+              </span>
+            )}
+
+            <ShoppingCart className="h-10" />
+            <p className="hidden font-extrabold md:text-sm md:inline mt-2">
+              Basket
+            </p>
+          </div>
         </div>
       </div>
     </header>
