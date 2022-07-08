@@ -17,7 +17,8 @@ const Layout = ({ title, description, children }) => {
 
       <ToastContainer position="bottom-center" limit={1} />
       <div className="flex min-h-screen flex-col justify-between">
-        {/* <header>
+        
+      {/* <header>
           <nav className="flex h-12 items-center px-4 justify-between shadow-md">
             <Link href="/">
               <a className="text-lg font-bold">Tochi Store</a>
@@ -82,7 +83,7 @@ const Layout = ({ title, description, children }) => {
               )}
             </div>
           </nav>
-        </header> */}
+        </header>  */}
 
         <Header />
         <main className="container m-auto mt-4 px-4">{children}</main>
