@@ -28,7 +28,7 @@ const Header = () => {
   return (
     <header>
       
-      
+
       <div className="flex items-center bg-gray-300 p-1 flex-row py-2">
         <div className="mt-2 flex items-center flex-grow sm:flex-grow-0">
           <Image
