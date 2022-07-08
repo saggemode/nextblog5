@@ -5,10 +5,13 @@ import "react-toastify/dist/ReactToastify.css";
 import { Store } from "../utils/Store";
 import { Menu } from "@headlessui/react";
 import DropdownLink from "./DropdownLink";
+import Image from "next/image";
+import { useRouter } from "next/router";
 import Link from "next/link";
 
 const Header = () => {
   const { status, data: session } = useSession();
+  const router = useRouter();
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
   const [cartItemsCount, setCartItemsCount] = useState(0);
@@ -27,6 +30,19 @@ const Header = () => {
       <Link href="/">
         <a className="text-lg font-bold">Tochi Store</a>
       </Link>
+      <div className="flex items-center bg-gray-300 p-1 flex-row py-2">
+      <div className="mt-2 flex items-center flex-grow sm:flex-grow-0">
+          <Image
+            onClick={() => router.push("/")}
+            src="https://images.pexels.com/photos/2901209/pexels-photo-2901209.jpeg?auto=compress&cs=tinysrgb&w=600"
+            width={150}
+            height={40}
+            alt="no inage"
+            objectFit="contain"
+            className="cursor-pointer"
+          />
+        </div>
+      </div>
       <div>
         <Link href="/cart">
           <a className="p-2">
