@@ -7,7 +7,7 @@ import { Menu } from "@headlessui/react";
 import DropdownLink from "./DropdownLink";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { Search } from "@mui/icons-material";
+//import { Search } from "@mui/icons-material";
 import Link from "next/link";
 
 const Header = () => {
@@ -41,13 +41,13 @@ const Header = () => {
           />
         </div>
 
-        <div className="hidden sm:flex items-center h-10 rounded-md flex-grow cursor-pointer bg-red-400 hover:bg-red-500">
+        {/* <div className="hidden sm:flex items-center h-10 rounded-md flex-grow cursor-pointer bg-red-400 hover:bg-red-500">
           <input
             className="p-2 h-full w-6 flex-grow flex-shrink rounded-l-md focus:outline-none px-4"
             type="text"
           />
           <Search className="h-12 p-4" />
-        </div>
+        </div> */}
 
         <div>
           <Link href="/cart">
