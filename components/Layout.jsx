@@ -1,30 +1,12 @@
-import { signOut, useSession } from "next-auth/react";
 import Head from "next/head";
-import Link from "next/link";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Store } from "../utils/Store";
-import DropdownLink from "./DropdownLink";
-import Cookies from "js-cookie";
-import React, { useContext, useEffect, useState } from "react";
-import { Menu } from "@headlessui/react";
+
+import React from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 
 const Layout = ({ title, description, children }) => {
-  const { status, data: session } = useSession();
-  const { state, dispatch } = useContext(Store);
-  const { cart } = state;
-  const [cartItemsCount, setCartItemsCount] = useState(0);
-  useEffect(() => {
-    setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
-  }, [cart.cartItems]);
-
-  const logoutClickHandler = () => {
-    Cookies.remove("cart");
-    dispatch({ type: "CART_RESET" });
-    signOut({ callbackUrl: "/login" });
-  };
   return (
     <>
       <Head>
