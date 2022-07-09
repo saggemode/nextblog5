@@ -4,6 +4,7 @@ import db from '../../../../utils/db';
 
 
 
+
 const handler = async (req, res) => {
   const session = await getSession({ req });
   if (!session || (session && !session.user.isAdmin)) {
