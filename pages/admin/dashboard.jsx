@@ -14,6 +14,7 @@ import {
 import React, { useEffect, useReducer } from 'react';
 import { getError } from '../../utils/errors';
 import Layout from '../../components/Layout';
+import { CircularProgress } from '@mui/material';
 
 
 ChartJS.register(
@@ -101,7 +102,7 @@ function AdminDashboardScreen() {
         <div className="md:col-span-3">
           <h1 className="mb-4 text-xl">Admin Dashboard</h1>
           {loading ? (
-            <div>Loading...</div>
+           <CircularProgress/>
           ) : error ? (
             <div className="alert-error">{error}</div>
           ) : (
