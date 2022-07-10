@@ -66,6 +66,7 @@ const ProductScreen = (props) => {
               <div>Status</div>
               <div>{product.countInStock > 0 ? "In stock" : "Unavailable"}</div>
             </div>
+
             <button
               className="primary-button w-full"
               onClick={addToCartHandler}

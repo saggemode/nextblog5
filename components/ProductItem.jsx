@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { Rating } from "@mui/material";
 import Link from "next/link";
 import React from "react";
 
@@ -21,6 +22,7 @@ const ProductItem = ({ product, addToCartHandler }) => {
           </a>
         </Link>
         <p className="mb-2">{product.brand}</p>
+        <Rating value={product.rating} readOnly></Rating>
         <p>₦{product.price}</p>
         <button
           className="primary-button"

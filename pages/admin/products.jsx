@@ -1,3 +1,4 @@
+import { CircularProgress } from '@mui/material';
 import axios from 'axios';
 import Link from 'next/link';
 import React, { useEffect, useReducer } from 'react';
@@ -62,7 +63,7 @@ export default function AdminProdcutsScreen() {
         <div className="overflow-x-auto md:col-span-3">
           <h1 className="mb-4 text-xl">Products</h1>
           {loading ? (
-            <div>Loading...</div>
+            <CircularProgress/>
           ) : error ? (
             <div className="alert-error">{error}</div>
           ) : (
