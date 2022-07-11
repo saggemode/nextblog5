@@ -90,6 +90,8 @@ const Users = () => {
         </div>
         <div className="overflow-x-auto md:col-span-3">
         {loadingDelete && <CircularProgress />}
+
+       
           <h1 className="mb-4 text-xl">Users</h1>
           {loading ? (
             <CircularProgress />
