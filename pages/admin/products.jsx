@@ -27,11 +27,12 @@ function reducer(state, action) {
   }
 }
 export default function AdminProdcutsScreen() {
-  const [{ loading, error, products, successDelete, loadingDelete }, dispatch] = useReducer(reducer, {
-    loading: true,
-    products: [],
-    error: "",
-  });
+  const [{ loading, error, products, successDelete, loadingDelete }, dispatch] =
+    useReducer(reducer, {
+      loading: true,
+      products: [],
+      error: "",
+    });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,7 +45,6 @@ export default function AdminProdcutsScreen() {
       }
     };
 
- 
     if (successDelete) {
       dispatch({ type: "DELETE_RESET" });
     } else {
@@ -88,9 +88,9 @@ export default function AdminProdcutsScreen() {
           </ul>
         </div>
         <div className="overflow-x-auto md:col-span-3">
-        {loadingDelete && <CircularProgress />}
+          {loadingDelete && <CircularProgress />}
 
-        <Link href='/admin/createproduct'>Create New Product</Link>
+          <Link href="/admin/createproduct">Create New Product</Link>
           <h1 className="mb-4 text-xl">Products</h1>
           {loading ? (
             <CircularProgress />

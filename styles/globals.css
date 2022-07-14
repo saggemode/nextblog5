@@ -14,7 +14,6 @@ a {
   @apply text-blue-600 hover:text-blue-800;
 }
 
-
 * {
   box-sizing: border-box;
 }
@@ -57,14 +56,6 @@ textarea {
 .btn-red:hover {
   @apply bg-red-700;
 }
-
-
-
-
-
-
-
-
 
 @layer components {
   .link {
