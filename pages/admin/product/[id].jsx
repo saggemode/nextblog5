@@ -183,6 +183,7 @@ const AdminProductEditScreen = () => {
                   <div className="text-red-500">{errors.name.message}</div>
                 )}
               </div>
+
               <div className="mb-4">
                 <label htmlFor="slug">Slug</label>
                 <input
@@ -197,6 +198,7 @@ const AdminProductEditScreen = () => {
                   <div className="text-red-500">{errors.slug.message}</div>
                 )}
               </div>
+
               <div className="mb-4">
                 <label htmlFor="price">Price</label>
                 <input
@@ -211,6 +213,7 @@ const AdminProductEditScreen = () => {
                   <div className="text-red-500">{errors.price.message}</div>
                 )}
               </div>
+
               <div className="mb-4">
                 <label htmlFor="image">image</label>
                 <input
@@ -225,6 +228,7 @@ const AdminProductEditScreen = () => {
                   <div className="text-red-500">{errors.image.message}</div>
                 )}
               </div>
+
               <div className="mb-4">
                 <label htmlFor="imageFile">Upload image</label>
                 <input
@@ -236,6 +240,7 @@ const AdminProductEditScreen = () => {
 
                 {loadingUpload && <div>Uploading....</div>}
               </div>
+
               <div className="mb-4">
                 <label htmlFor="category">category</label>
                 <input
@@ -250,6 +255,7 @@ const AdminProductEditScreen = () => {
                   <div className="text-red-500">{errors.category.message}</div>
                 )}
               </div>
+
               <div className="mb-4">
                 <label htmlFor="brand">brand</label>
                 <input
@@ -264,6 +270,7 @@ const AdminProductEditScreen = () => {
                   <div className="text-red-500">{errors.brand.message}</div>
                 )}
               </div>
+
               <div className="mb-4">
                 <label htmlFor="countInStock">countInStock</label>
                 <input
@@ -280,6 +287,7 @@ const AdminProductEditScreen = () => {
                   </div>
                 )}
               </div>
+
               <div className="mb-4">
                 <label htmlFor="countInStock">description</label>
                 <input
@@ -296,6 +304,7 @@ const AdminProductEditScreen = () => {
                   </div>
                 )}
               </div>
+              
               <div className="mb-4">
                 <button disabled={loadingUpdate} className="primary-button">
                   {loadingUpdate ? "Loading" : "Update"}

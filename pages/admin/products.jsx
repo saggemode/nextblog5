@@ -90,7 +90,7 @@ export default function AdminProdcutsScreen() {
         <div className="overflow-x-auto md:col-span-3">
         {loadingDelete && <CircularProgress />}
 
-        <Link href='/admin/createproduct'>New product </Link>
+        <Link href='/admin/createproduct'>Create New Product</Link>
           <h1 className="mb-4 text-xl">Products</h1>
           {loading ? (
             <CircularProgress />

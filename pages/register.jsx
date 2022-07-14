@@ -91,7 +91,7 @@ const RegisterScreen = () => {
             type="password"
             {...register("password", {
               required: "Please enter password",
-              minLength: { value: 6, message: "password is more than 5 chars" },
+              minLength: { value: 5, message: "password should be more than 4 chars" },
             })}
             className="w-full"
             id="password"
@@ -111,8 +111,8 @@ const RegisterScreen = () => {
               required: "Please enter confirm password",
               validate: (value) => value === getValues("password"),
               minLength: {
-                value: 6,
-                message: "confirm password is more than 5 chars",
+                value: 5,
+                message: "confirm password should be more than 4 chars",
               },
             })}
           />

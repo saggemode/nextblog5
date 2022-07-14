@@ -15,13 +15,14 @@ async function handler(req, res) {
   }
 
   const { user } = session;
-  const { name, email, password } = req.body;
+  const { name, email,image, password } = req.body;
 
   if (
     !name ||
     !email ||
+    !image ||
     !email.includes('@') ||
-    (password && password.trim().length < 5)
+    (password && password.trim().length < 4)
   ) {
     res.status(422).json({
       message: 'Validation error',
@@ -33,6 +34,7 @@ async function handler(req, res) {
   const toUpdateUser = await User.findById(user._id);
   toUpdateUser.name = name;
   toUpdateUser.email = email;
+  toUpdateUser.image = image;
 
   if (password) {
     toUpdateUser.password = bcryptjs.hashSync(password);
