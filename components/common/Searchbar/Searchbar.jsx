@@ -1,6 +1,6 @@
 import { memo, useEffect, useState } from "react";
-//import s from './Searchbar.module.css'
 import { useRouter } from "next/router";
+
 
 const Searchbar = ({ id = "search" }) => {
   const router = useRouter();

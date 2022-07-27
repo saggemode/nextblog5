@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import NextLink from "next/link";
-//import { Avatar } from '@mui/material';
 import Container from "../../ui/Container/Container";
 import Searchbar from "../Searchbar/Searchbar";
 import Logo from "../../ui/Logo/Logo";
@@ -11,10 +10,22 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { getError } from "../../../utils/errors";
 import { ListItem, ListItemText } from "@mui/material";
+import { Store } from "../../../utils/Store";
+import { signOut, useSession } from "next-auth/react";
+import Cookies from "js-cookie";
 
 const Navbar = ({ links }) => {
   const [nav, setNav] = useState(false);
   const [categories, setCategories] = useState([]);
+
+  const { data: session } = useSession();
+  const { state, dispatch } = useContext(Store);
+
+  const logoutClickHandler = () => {
+    Cookies.remove("cart");
+    dispatch({ type: "CART_RESET" });
+    signOut({ callbackUrl: "/login" });
+  };
 
   const fetchCategories = async () => {
     try {
@@ -87,7 +98,7 @@ const Navbar = ({ links }) => {
         >
           <AiOutlineClose
             onClick={() => setNav(!nav)}
-            size={30}
+            size={20}
             className="absolute right-4 top-4 cursor-pointer"
           />
           <h2 className="text-1xl p-4 underline">Shopping by category</h2>
@@ -104,6 +115,13 @@ const Navbar = ({ links }) => {
                   </ListItem>
                 </NextLink>
               ))}
+              {session?.user ? (
+                <ListItem button component="a" onClick={logoutClickHandler}>
+                  <ListItemText primary="Logout"></ListItemText>
+                </ListItem>
+              ) : (
+                ""
+              )}
             </ul>
           </nav>
         </div>

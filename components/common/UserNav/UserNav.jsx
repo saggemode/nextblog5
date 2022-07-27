@@ -40,8 +40,9 @@ const UserNav = () => {
           "store"
         ) : session?.user ? (
           <Menu as="div" className="relative inline-block">
-            <Menu.Button className="text-blue-600">
+            <Menu.Button className=" text-blue-600">
               {session.user.name.split(" ")[0]}
+              
             </Menu.Button>
             <Menu.Items className="absolute right-0 w-56 origin-top-right bg-white  shadow-lg ">
               <Menu.Item>
