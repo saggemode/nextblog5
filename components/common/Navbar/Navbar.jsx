@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import NextLink from "next/link";
+//import { Avatar } from '@mui/material';
 import Container from "../../ui/Container/Container";
 import Searchbar from "../Searchbar/Searchbar";
 import Logo from "../../ui/Logo/Logo";
@@ -10,16 +11,16 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { getError } from "../../../utils/errors";
 import { ListItem, ListItemText } from "@mui/material";
+import Cookies from "js-cookie";
 import { Store } from "../../../utils/Store";
 import { signOut, useSession } from "next-auth/react";
-import Cookies from "js-cookie";
 
 const Navbar = ({ links }) => {
   const [nav, setNav] = useState(false);
   const [categories, setCategories] = useState([]);
 
   const { data: session } = useSession();
-  const {  dispatch } = useContext(Store);
+  const { dispatch } = useContext(Store);
 
   const logoutClickHandler = () => {
     Cookies.remove("cart");
@@ -115,9 +116,10 @@ const Navbar = ({ links }) => {
                   </ListItem>
                 </NextLink>
               ))}
+
               {session?.user ? (
                 <ListItem button component="a" onClick={logoutClickHandler}>
-                  <ListItemText primary="Logout"></ListItemText>
+                  <ListItemText primary='Logout'></ListItemText>
                 </ListItem>
               ) : (
                 ""

@@ -6,7 +6,6 @@ import React from "react";
 import Footer from "../../Footer";
 import Navbar from "../Navbar/Navbar";
 
-
 const Layout = ({ title, description, children }) => {
   return (
     <>
@@ -17,9 +16,13 @@ const Layout = ({ title, description, children }) => {
       </Head>
 
       <ToastContainer position="bottom-center" limit={1} />
-      <div className="flex min-h-screen flex-col justify-between">
-       <Navbar/>
-       {/* <SubNavbar/> */}
+      <div className="flex min-h-screen flex-col justify-between  ">
+        <div className=" top-0 z-40">
+          {/* <div className='sticky top-0 z-40'> */}
+          <Navbar />
+        </div>
+
+        {/* <SubNavbar/> */}
         <main className="container m-auto mt-4 px-4">{children}</main>
         <Footer />
       </div>
