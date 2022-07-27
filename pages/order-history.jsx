@@ -1,7 +1,7 @@
 import axios from "axios";
 import Link from "next/link";
 import React, { useEffect, useReducer } from "react";
-import Layout from "../components/Layout";
+import Layout from "../components/common/Layout/Layout";
 import { getError } from "../utils/errors";
 
 function reducer(state, action) {

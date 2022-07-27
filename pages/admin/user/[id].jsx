@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useReducer, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import Layout from "../../../components/Layout";
+import Layout from "../../../components/common/Layout/Layout";
 import { getError } from "../../../utils/errors";
 
 function reducer(state, action) {
@@ -43,11 +43,10 @@ function reducer(state, action) {
 const AdminUserEditScreen = () => {
   const { query } = useRouter();
   const userId = query.id;
-  const [{ loading, error, loadingUpdate }, dispatch] =
-    useReducer(reducer, {
-      loading: true,
-      error: "",
-    });
+  const [{ loading, error, loadingUpdate }, dispatch] = useReducer(reducer, {
+    loading: true,
+    error: "",
+  });
 
   const {
     register,
@@ -110,7 +109,7 @@ const AdminUserEditScreen = () => {
         //image,
       });
       dispatch({ type: "UPDATE_SUCCESS" });
-      toast.success("Product updated successfully");
+      toast.success("User updated successfully");
       router.push("/admin/users");
     } catch (err) {
       dispatch({ type: "UPDATE_FAIL", payload: getError(err) });
@@ -118,7 +117,7 @@ const AdminUserEditScreen = () => {
     }
   };
   return (
-    <Layout title={`Edit Product ${userId}`}>
+    <Layout title={`Edit User ${userId}`}>
       <div className="grid md:grid-cols-4 md:gap-5">
         <div>
           <ul>
@@ -148,7 +147,7 @@ const AdminUserEditScreen = () => {
               className="mx-auto max-w-screen-md"
               onSubmit={handleSubmit(submitHandler)}
             >
-              <h1 className="mb-4 text-xl">{`Edit Product ${userId}`}</h1>
+              <h1 className="mb-4 text-xl">{`Edit User ${userId}`}</h1>
               <div className="mb-4">
                 <label htmlFor="name">Name</label>
                 <input
@@ -205,6 +204,7 @@ const AdminUserEditScreen = () => {
                 <button disabled={loadingUpdate} className="primary-button">
                   {loadingUpdate ? "Loading" : "Update"}
                 </button>
+                {loadingUpdate && <CircularProgress />}
               </div>
               <div className="mb-4">
                 <Link href={`/admin/products`}>Back</Link>
@@ -216,6 +216,12 @@ const AdminUserEditScreen = () => {
     </Layout>
   );
 };
+
+// export async function getServerSideProps({ params }) {
+//   return {
+//     props: { params },
+//   };
+// }
 
 export default AdminUserEditScreen;
 AdminUserEditScreen.auth = { adminOnly: true };

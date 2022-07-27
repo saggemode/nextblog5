@@ -2,7 +2,7 @@ import Link from "next/link";
 import React, { useEffect } from "react";
 import { signIn, useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
-import Layout from "../components/Layout";
+import Layout from "../components/common/Layout/Layout";
 import { getError } from "../utils/errors";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
@@ -91,7 +91,10 @@ const RegisterScreen = () => {
             type="password"
             {...register("password", {
               required: "Please enter password",
-              minLength: { value: 5, message: "password should be more than 4 chars" },
+              minLength: {
+                value: 5,
+                message: "password should be more than 4 chars",
+              },
             })}
             className="w-full"
             id="password"

@@ -3,8 +3,9 @@ import React, { useReducer } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import axios from "axios";
-import Layout from "../../components/Layout";
+
 import { getError } from "../../utils/errors";
+import Layout from "../../components/common/Layout/Layout";
 //import { imageConstants } from "../../components/constants";
 
 function reducer(state, action) {

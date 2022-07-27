@@ -2,9 +2,9 @@ import React, { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import Cookies from 'js-cookie';
 import CheckoutWizard from '../components/CheckoutWizard';
-import Layout from '../components/Layout';
 import { Store } from '../utils/Store';
 import { useRouter } from 'next/router';
+import Layout from '../components/common/Layout/Layout';
 
 const ShippingScreen = () => {
   const {

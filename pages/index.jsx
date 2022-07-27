@@ -2,13 +2,15 @@ import React from "react";
 import axios from "axios";
 import { useContext } from "react";
 import { toast } from "react-toastify";
-import Layout from "../components/Layout";
-import ProductItem from "../components/ProductItem";
+import ProductItem from "../components/Product/ProductItem";
 
 import db from "../utils/db";
 import { Store } from "../utils/Store";
 import Product from "../models/Product";
-
+import Layout from "../components/common/Layout/Layout";
+import Marquee from "../components/ui/Marquee/Marquee";
+import Food from "../components/Product/Food";
+import ProductHeadline from "../components/Product/ProductSlide";
 
 export default function Home({ products }) {
   const { state, dispatch } = useContext(Store);
@@ -20,17 +22,17 @@ export default function Home({ products }) {
     const { data } = await axios.get(`/api/products/${product._id}`);
 
     if (data.countInStock < quantity) {
-      return toast.error('Sorry. Product is out of stock');
+      return toast.error("Sorry. Product is out of stock");
     }
-    dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
+    dispatch({ type: "CART_ADD_ITEM", payload: { ...product, quantity } });
 
-    toast.success('Product added to the cart');
+    toast.success("Product added to the cart");
   };
 
   return (
     <Layout title="home" description="Tochi store">
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
-        {products.map((product) => (
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4 pt-4">
+        {products.slice(0, 4).map((product) => (
           <ProductItem
             product={product}
             key={product.slug}
@@ -38,6 +40,20 @@ export default function Home({ products }) {
           ></ProductItem>
         ))}
       </div>
+      <div className="pt-3">
+        <Marquee>
+          {products.map((product) => (
+            <ProductHeadline
+              key={product.slug}
+              product={product}
+              addToCartHandler={addToCartHandler}
+              variant="slim"
+            />
+          ))}
+        </Marquee>
+      </div>
+
+      <Food />
     </Layout>
   );
 }

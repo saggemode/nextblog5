@@ -13,8 +13,8 @@ import {
 } from "chart.js";
 import React, { useEffect, useReducer } from "react";
 import { getError } from "../../utils/errors";
-import Layout from "../../components/Layout";
 import { CircularProgress } from "@mui/material";
+import Layout from "../../components/common/Layout/Layout";
 
 ChartJS.register(
   CategoryScale,

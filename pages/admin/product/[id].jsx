@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useReducer } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import Layout from "../../../components/Layout";
+import Layout from "../../../components/common/Layout/Layout";
 import { getError } from "../../../utils/errors";
 
 function reducer(state, action) {

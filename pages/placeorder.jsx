@@ -6,9 +6,9 @@ import Cookies from 'js-cookie';
 import React, { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import CheckoutWizard from '../components/CheckoutWizard';
-import Layout from '../components/Layout';
 import { getError } from '../utils/errors';
 import { Store } from '../utils/Store';
+import Layout from '../components/common/Layout/Layout';
 
 const PlaceOrderScreen = () => {
     const { state, dispatch } = useContext(Store);

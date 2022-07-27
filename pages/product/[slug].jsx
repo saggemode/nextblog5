@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import Layout from "../../components/Layout";
+//import Layout from "../../components/Layout";
 import db from "../../utils/db";
 import { Store } from "../../utils/Store";
 import Product from "../../models/Product";
@@ -19,6 +19,7 @@ import {
   TextField,
 } from "@mui/material";
 import { getError } from "../../utils/errors";
+import Layout from "../../components/common/Layout/Layout";
 
 const ProductScreen = (props) => {
   const { data: session } = useSession();
@@ -217,3 +218,5 @@ export async function getServerSideProps(context) {
 }
 
 export default ProductScreen;
+
+

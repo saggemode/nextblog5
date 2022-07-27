@@ -109,7 +109,7 @@ const postHandler = async (req, res) => {
       return res.send({ message: "Review updated" });
     } else {
       const review = {
-        user: mongoose.Types.ObjectId(req.user._id),
+        user: mongoose.Types.ObjectId.isValid(req.user._id),
         name: req.user.name,
         rating: Number(req.body.rating),
         comment: req.body.comment,

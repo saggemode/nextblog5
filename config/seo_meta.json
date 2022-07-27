@@ -1,0 +1,25 @@
+{
+    "title": "Tochi Store | Ecommerce",
+    "titleTemplate": "%s - Tochi Store",
+    "description": "Tochi online Store - https://next-ecomtailwin.vercel.app/",
+    "openGraph": {
+      "title": "Tochi Storefront | Ecommerce",
+      "description": "Next.js Commerce - https://www.nextjs.org/commerce",
+      "type": "website",
+      "url": "https://next-ecomtailwin.vercel.app/",
+      "site_name": "Tochi Store Ecommerce",
+      "images": [
+        {
+          "url": "/card.png",
+          "width": "800",
+          "height": "600",
+          "alt": "Tochi Store Commerce"
+        }
+      ]
+    },
+    "twitter": {
+      "handle": "@umeh",
+      "site": "@umeh",
+      "cardType": "summary_large_image"
+    }
+  }

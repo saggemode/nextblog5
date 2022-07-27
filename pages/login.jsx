@@ -2,11 +2,11 @@ import Link from "next/link";
 import React, { useEffect, useReducer } from "react";
 import { signIn, useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
-import Layout from "../components/Layout";
 import { getError } from "../utils/errors";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import { CircularProgress } from "@mui/material";
+import Layout from "../components/common/Layout/Layout";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -24,10 +24,9 @@ function reducer(state, action) {
 
 const LoginScreen = () => {
   const { data: session } = useSession();
-  const [{ loading, }, dispatch] =
-  useReducer(reducer, {
+  const [{ loading }, dispatch] = useReducer(reducer, {
     loading: true,
-    error: '',
+    error: "",
   });
   const router = useRouter();
   const { redirect } = router.query;
@@ -45,19 +44,18 @@ const LoginScreen = () => {
   } = useForm();
   const submitHandler = async ({ email, password }) => {
     try {
-      dispatch({ type: 'LOGIN_REQUEST' });
-      const result = await signIn("credentials", {   
+      dispatch({ type: "LOGIN_REQUEST" });
+      const result = await signIn("credentials", {
         redirect: false,
         email,
         password,
-       
       });
-      dispatch({ type: 'LOGIN_SUCCESS' });
+      dispatch({ type: "LOGIN_SUCCESS" });
       if (result.error) {
         toast.error(result.error);
       }
     } catch (err) {
-      dispatch({ type: 'LOGIN_FAIL', payload: getError(err) });
+      dispatch({ type: "LOGIN_FAIL", payload: getError(err) });
       toast.error(getError(err));
     }
   };
@@ -107,8 +105,9 @@ const LoginScreen = () => {
           )}
         </div>
         <div className="mb-4 ">
-       
-          <button className="primary-button">{!loading ? "Loading.." : "Login"}</button>
+          <button className="primary-button">
+            {!loading ? "Loading.." : "Login"}
+          </button>
           {!loading && <CircularProgress />}
         </div>
         <div className="mb-4 ">

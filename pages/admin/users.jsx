@@ -2,7 +2,7 @@ import { CircularProgress } from "@mui/material";
 import axios from "axios";
 import Link from "next/link";
 import React, { useEffect, useReducer } from "react";
-import Layout from "../../components/Layout";
+import Layout from "../../components/common/Layout/Layout";
 import { toast } from "react-toastify";
 import { getError } from "../../utils/errors";
 
