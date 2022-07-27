@@ -19,7 +19,7 @@ const Navbar = ({ links }) => {
   const [categories, setCategories] = useState([]);
 
   const { data: session } = useSession();
-  const { state, dispatch } = useContext(Store);
+  const {  dispatch } = useContext(Store);
 
   const logoutClickHandler = () => {
     Cookies.remove("cart");
